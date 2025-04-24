@@ -1,9 +1,13 @@
 {
-    "version"     : "0.1.0",
-    "name"        : "format-decimal",
-    "author"      : "Joaquín Fernández",
-    "description" : "Format thousands and decimals with custom separator: 1.000.000,00",
-    "keywords"    : [
+    "author": "Joaquín Fernández",
+    "description": "Format thousands and decimals with custom separator",
+    "homepage": "http://www.joaquinfernandez.net",
+    "license": "MIT",
+    "main": "index.js",
+    "name": "@jf/format-decimal",
+    "type": "module",
+    "version": "1.0.0",
+    "keywords": [
         "pretty",
         "format",
         "formatter",
@@ -12,13 +16,11 @@
         "separate",
         "separator"
     ],
-    "license"     : "MIT",
-    "homepage"    : "http://www.joaquinfernandez.net",
-    "repository"  : {
-        "type" : "git",
-        "url"  : "https://github.com/joaquinfq/format-decimal"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/joaquinfq/format-decimal"
     },
-    "scripts"     : {
-        "test" : "node test"
+    "scripts": {
+        "test": "node test"
     }
 }

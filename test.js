@@ -1,6 +1,7 @@
-const assert        = require('assert');
-const formatDecimal = require('./index');
-const items         = [
+import assert        from 'node:assert';
+import formatDecimal from './index.js';
+
+const items = [
     //@formatter:off
     [ 1.234567e-20, "{s}0{d}000"                                       ],
     [ 1.234567e-19, "{s}0{d}000"                                       ],
@@ -45,6 +46,7 @@ const items         = [
     [ 1.234567e20,  "{s}123{t}456{t}700{t}000{t}000{t}000{t}000{d}000" ]
     //@formatter:on
 ];
+
 /**
  * Verificación de las opciones de configuración.
  *
@@ -52,17 +54,15 @@ const items         = [
  */
 function testConfig(items)
 {
-    for (let _sign of [-1, 1])
+    for (let _sign of [ -1, 1 ])
     {
-        for (let _decimal of ['.', ','])
+        for (let _decimal of [ '.', ',' ])
         {
-            const _thousands = _decimal === '.'
-                ? ','
-                : '.';
+            const _thousands = _decimal === '.' ? ',' : '.';
             for (let _item of items)
             {
                 ++assertions;
-                const _actual    = formatDecimal(
+                const _actual = formatDecimal(
                     _sign * _item[0],
                     {
                         decimal   : _decimal,
@@ -70,35 +70,41 @@ function testConfig(items)
                         thousands : _thousands
                     }
                 );
-                const _expected  = _item[1]
+                const _expected = _item[1]
                     .replace('{s}', _sign > 0 ? '' : '-')
                     .replace(/\{d\}/g, _decimal)
                     .replace(/\{t\}/g, _thousands);
-                assert.equal(_expected, _actual, `Decimal: [${_decimal}] -- Thousands: [${_thousands}] :: ${_expected} !== ${_actual}`);
+                assert.equal(
+                    _expected,
+                    _actual,
+                    `Decimal: [${ _decimal }] -- Thousands: [${ _thousands }] :: ${ _expected } !== ${ _actual }`);
             }
         }
     }
 }
+
 /**
  * Verifica que se lancen las excepciones si se usan valores no numéricos.
  */
 function testTypeError()
 {
-    [true, 'test', [1, 2], null, {}, undefined].forEach(
+    [ true, 'test', [ 1, 2 ], null, {}, undefined ].forEach(
         value => assert.throws(
             () =>
             {
                 ++assertions;
-                formatDecimal(value)
+                formatDecimal(value);
             },
-            err => err instanceof TypeError && err.message === `You MUST specify a finite number, not [${typeof value} = ${value}]`
+            err => err instanceof TypeError &&
+                   err.message === `You MUST specify a finite number, not [${ typeof value } = ${ value }]`
         )
     );
 }
+
 //------------------------------------------------------------------------------
 // Inicio de las pruebas
 //------------------------------------------------------------------------------
-let assertions  = 0;
+let assertions = 0;
 const startTime = new Date().getTime();
 testConfig(items);
 testTypeError();

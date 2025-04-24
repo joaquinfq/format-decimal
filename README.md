@@ -1,4 +1,4 @@
-#format-decimal [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
+# @jf/format-decimal [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 Format thousands and decimals with custom separator: 1.000.000,00
 
@@ -12,7 +12,7 @@ You can pass a configuration object as second parameter with the following keys:
 
 ## Usage
 
-[![npm install format-decimal](https://nodei.co/npm/format-decimal.png?mini=true)](https://npmjs.org/package/format-decimal/)
+[![npm install @jf/format-decimal](https://nodei.co/npm/@jf/format-decimal.png?mini=true)](https://npmjs.org/package/@jf/format-decimal/)
 
 ```js
 const formatDecimal = require('format-decimal');
